@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel= "stylesheet"  href= "{{ url_for('static',filename='Styles/display.css') }}">
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="menu">
+          <a href="/menu">Menu</a>
+          <a href="/reservation/add_reservation">Make Reservation</a>
+          <a href="/order/add_order">Make An Order</a>
+        </div>
+  
+        <div class="menu-toggle" onclick="toggleMenu()">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      
+      <div class="contenedor contenido-principal">
+               <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>MENU_NAME</th>
+              <th>PRICE</th>
+              <th>DESCRIPTION</th>
+              <th>ACTION</th>
+              <th>DELETE</th>
+            </tr>
+          </thead>
+          <tbody id="tablaDatos">
+            <tr>
+                {% for menu in menus %}
+              <td>{{menu.menu_id}}</td>
+              <td>{{menu.menu_name}}</td>
+              <td>{{menu.price}}</td>
+              <td>{{menu.description}}</td>
+              <td class="acciones">
+                <a class="botonEliminar" href="menu/view/{{ menu.menu_id }}">View</a>
+                <a class="botonEliminar" href="menu/update/{{ menu.menu_id }}">Modify</a>
+            </td>
+            <td>
+                <form action="menu/delete/{{ menu.menu_id }}" method="post">
+                  <input type="hidden" name="_method" value="DELETE" />
+                  <button>Delete</button>
+                </form>
+              </td>
+            {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</body>
+</html>

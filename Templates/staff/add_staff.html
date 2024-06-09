@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel= "stylesheet"  href= "{{ url_for('static',filename='Styles/form.css') }}">
+</head>
+<body>
+    <div class="form-box">
+        <form class="form" action="staff/create_staff">
+            <span class="title">Add Staff</span>
+            <div class="form-container">
+              <input type="text" class="input" name="user_name" placeholder="Full Name" required>
+                    <input type="email" class="input" name="email" placeholder="Email" required>
+                    <input type="text" class="input" name="salary" placeholder="Salary" required>
+                    <input type="text" class="input" name="role" placeholder="role" required>
+            </div>
+            <button>Sign up</button>
+        </form>
+        <div class="form-section">
+          <p>Have an account? <a href="">Log in</a> </p>
+        </div>
+        </div>
+</body>
+</html>

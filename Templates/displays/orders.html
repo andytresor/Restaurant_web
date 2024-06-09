@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <link rel="stylesheet" href="display.css">
+    <link rel= "stylesheet"  href= "{{ url_for('static',filename='Styles/display.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="menu">
+          <a href="/orders">Orders</a>
+          <a href="/menu/add_menu">Menus</a>
+        </div>
+      </div>
+      
+      <div class="contenedor contenido-principal">
+              <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>MENU NAME</th>
+              <th>PRICE</th>
+              <th>DESCRIPTION</th>
+              <th>USER</th>
+              <th>ACTIONS</th>
+              <th>DELETE</th>
+            </tr>
+          </thead>
+          <tbody id="tablaDatos">
+            <tr>
+                {% for order in orders %}
+              <td>{{order.menu_id}}</td>
+              <td>{{order.price}}</td>
+              <td>{{order.description}}</td>
+              <td>{{order.created_at}}</td>
+              <td>{{order.client_id.user_name}}</td>
+              <td class="acciones">
+                
+                <a class="botonEliminar" href="order/update/{{ order.order_id }}">Modify</a>
+            </td>
+            <td>
+                <form action="order/delete/{{ order.order_id }}" method="post">
+                  <input type="hidden" name="_method" value="DELETE" />
+                  <button>Delete</button>
+                </form>
+              </td>
+            {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</body>
+</html>
