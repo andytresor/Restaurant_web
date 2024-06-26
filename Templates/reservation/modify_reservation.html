@@ -1,31 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change Reservation</title>
-    <link rel= "stylesheet"  href= "{{ url_for('static',filename='Styles/display.css') }}">
-</head>
-<body>
-    <h1>Change Reservation</h1>
-    <div class="card">
-        <span class="title">Leave a Comment</span>
-        <form class="form" action="/reservation/update/{{reservation_id}}">
-          <div class="group">
-          <input placeholder="" name="table_name" type="text" required="">
-          <label for="name">Table Name</label>
-          </div>
-      <div class="group">
-          <input placeholder="" type="text" id="email" name="price" required="">
-          <label for="email">Price</label>
-          </div>
-      <div class="group">
-          <textarea placeholder="Description" id="comment" name="description" rows="5" required=""></textarea>
-          <label for="comment">Description</label>
-      </div>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-      
-</body>
-</html>
+{% extends 'layouts/base.html' %} {% block content %}
+
+<h1>Change Reservation</h1>
+<div class="card">
+  <span class="title">Leave a Comment</span>
+  <form
+    class="form"
+    action="/reservation/update/{{reservations.reservation_id}}"
+    method="post"
+  >
+    <div class="group">
+      <input placeholder="" name="client_id" type="text" required="" />
+      <label for="name">Client Name</label>
+    </div>
+    <div class="group">
+      <input placeholder="" name="table_name" type="text" required="" />
+      <label for="name">Table Name</label>
+    </div>
+    <div class="group">
+      <input placeholder="" type="text" id="email" name="price" required="" />
+      <label for="email">Price</label>
+    </div>
+    <div class="group">
+      <textarea
+        placeholder="Description"
+        id="comment"
+        name="description"
+        rows="5"
+        required=""
+      ></textarea>
+      <label for="comment">Description</label>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+{% endblock %}

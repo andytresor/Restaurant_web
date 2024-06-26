@@ -1,53 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservations</title>
-    <link rel="stylesheet" href="/Styles/display.css">
-    <link rel= "stylesheet"  href= "{{ url_for('static',filename='Styles/display.css') }}">
-</head>
-<body>
-    <div class="navbar">
-        
-        <div class="menu">
-          <a href="/staff">Staff</a>
-          <a href="/reservation/reservation">Reservations</a>
-                </div>
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<div class="navbar">
+    
+    <div class="menu">
+      <a href="/staff/staff">Staff</a>
+      <a href="/reservation/add_reservation"></a>
       
-      <div class="contenedor contenido-principal">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>TABLE_NAME</th>
-              <th>PRICE</th>
-              <th>DESCRIPTION</th>
-              <th>ACTIONS</th>
-              <th>DELETE</th>
-            </tr>
-          </thead>
-          <tbody id="tablaDatos">
-            <tr>
-                {% for reservation in reservations %}
-              <td>{{reservation.reservation_id}}</td>
-              <td>{{reservation.reservation_name}}</td>
-              <td>{{reservation.price}}</td>
-              <td>{{reservation.description}}</td>
-              <td class="acciones">
-                
-                <a class="botonEliminar" href="reservation/update/{{ reservation.reservation_id }}">Modify</a>
-            </td>
-            <td>
-                <form action="reservation/delete/{{ reservation.reservation_id }}" method="post">
-                  <input type="hidden" name="_method" value="DELETE" />
-                  <button>Delete</button>
-                </form>
-              </td>
-            {% endfor %}
-            </tr>
-          </tbody>
-        </table>
-      </div>
-</body>
-</html>
+            </div>
+  
+  <div class="contenedor contenido-principal">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>TABLE_NAME</th>
+          <th>PRICE</th>
+          <th>DESCRIPTION</th>
+          <th>ACTIONS</th>
+          <th>DELETE</th>
+        </tr>
+      </thead>
+      <tbody id="tablaDatos">
+       
+            {% for reservation in reservations %}
+          <td>{{reservation.reservation_id}}</td>
+          <td>{{reservation.table_name}}</td>
+          <td>{{reservation.price}}</td>
+          <td>{{reservation.description}}</td>
+          <td class="acciones">
+            
+            <a class="botonEliminar" href="/reservation/update/{{reservation.reservation_id}}">Modify</a>
+        </td>
+        <td>
+            <form action="/reservation/delete/{{reservation.reservation_id}}" method="post">
+              <input type="hidden" name="_method" value="DELETE" />
+              <button>Delete</button>
+            </form>
+          </td>
+        {% endfor %}
+       
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+
+

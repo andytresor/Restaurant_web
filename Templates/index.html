@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant web</title>
-</head>
-<body>
-    <h1>Welcome</h1>
+{% extends 'layouts/base.html' %}
 
-    <div class="">
-     <nav>
-         <a href="/menu/menu">Client</a> |
-         <a href="/order/order">Staff</a> |
-     </nav>
-    </div>
-</body>
-</html>
+{% block content %}
+
+   <h1>{% block title %} Home Page {% endblock %}</h1>
+   <h1>Welcome</h1>
+
+   <div class="">
+    <nav>
+        <a href="/auth/register">Register</a> |
+        <a href="/auth/login">Login</a>
+
+    </nav>
+   </div>
+   
+{% endblock %}

@@ -1,31 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change Menu</title>
-    <link rel= "stylesheet"  href= "{{ url_for('static',filename='Styles/display.css') }}">
-</head>
-<body>
-    <h1>Change Menu</h1>
-    <div class="card">
-        <span class="title">Leave a Comment</span>
-        <form class="form" action="menu/update/{{menu_id}}" method="post">
-          <div class="group">
-          <input placeholder="" name="menu_name" type="text" required="">
-          <label for="name">Name</label>
-          </div>
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<h1>Change Menu</h1>
+<div class="card">
+    <span class="title">Leave a Comment</span>
+    <form class="form" action="menu/update/{{menu_id}}" method="post">
       <div class="group">
-          <input placeholder="" type="text" id="email" name="price" required="">
-          <label for="email">Price</label>
-          </div>
+        <input placeholder="" name="user_id" type="text" required="">
+        <label for="name">user name</label>
+        </div>
       <div class="group">
-          <textarea placeholder="Description" id="comment" name="description" rows="5" required=""></textarea>
-          <label for="comment">Description</label>
+      <input placeholder="" name="menu_name" type="text" required="">
+      <label for="name">Name</label>
       </div>
-          <button type="submit">Submit</button>
-        </form>
+  <div class="group">
+      <input placeholder="" type="text" id="email" name="price" required="">
+      <label for="email">Price</label>
       </div>
-      
-</body>
-</html>
+  <div class="group">
+      <textarea placeholder="Description" id="comment" name="description" rows="5" required=""></textarea>
+      <label for="comment">Description</label>
+  </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  
+{% endblock %}
+

@@ -1,59 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservations</title>
-    <link rel= "stylesheet"  href= "{{ url_for('static',filename='Styles/display.css') }}">
-</head>
-<body>
-    <div class="navbar">
-        
-        <div class="menu">
-          <a href="">Reservation</a>
-          <a href="/menu">Menus</a>
-        </div>
-      </div>
-      
-      <div class="contenedor contenido-principal">
-        <div class="usuarios-barra">
-          <h2>Usuarios</h2><button id="nuevoUsuario"><i class="fas fa-plus"></i> Agregar Nuevo</button>
-        </div>
-        <div class="busqueda-barra"><input id="nombre" type="search" placeholder="Buscar por Nombre Completo"><button id="busquedaUsuario" disabled="">Buscar</button></div>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>NAME</th>
-              <th>EMAIL ADRESS</th>
-              <th>SALARY</th>
-              <th>ROLE</th>
-              <th>ACTIONS</th>
-              <th>DELETE</th>
-            </tr>
-          </thead>
-          <tbody id="tablaDatos">
-            <tr>
-                {% for reservation in reservations %}
-              <td>{{reservation.reservation_id}}</td>
-              <td>{{reservation.name}}</td>
-              <td>{{reservation.email}}</td>
-              <td>{{reservation.salary}}</td>
-              <td>{{reservation.role}}</td>
-              <td class="acciones">
-                
-                <a class="botonEliminar" href="reservation/update/{{ reservation.reservation_id }}">Modify</a>
-            </td>
-            <td>
-                <form action="reservation/delete/{{ reservation.reservation_id }}" method="post">
-                  <input type="hidden" name="_method" value="DELETE" />
-                  <button>Delete</button>
-                </form>
-              </td>
-            {% endfor %}
-            </tr>
-          </tbody>
-        </table>
-      </div>
-</body>
-</html>
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<div class="navbar">
+    
+    <div class="menu">
+      <a href="">Reservation</a>
+      <a href="/menu/menu">Menus</a>
+      <a href="/staff/add_staff">Add Staff</a>
+    </div>
+  </div>
+  
+  <div class="contenedor contenido-principal">
+    <div class="usuarios-barra">
+      <h2>Usuarios</h2><button id="nuevoUsuario"><i class="fas fa-plus"></i> Agregar Nuevo</button>
+    </div>
+    <div class="busqueda-barra"><input id="nombre" type="search" placeholder="Buscar por Nombre Completo"><button id="busquedaUsuario" disabled="">Buscar</button></div>
+    <table>
+      <tr>
+      <thead>
+          <th>ID</th>
+          <th>NAME</th>
+          <th>EMAIL ADRESS</th>
+          <th>SALARY</th>
+          <th>ROLE</th>
+          <th>ACTIONS</th>
+          <th>DELETE</th>
+        </thead>
+        <tbody id="tablaDatos">
+          
+          {% for user in users %}
+          <td>{{user.staff_id}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.salary}}</td>
+          <td>{{user.role}}</td>
+          <td class="acciones">
+            
+            <a class="botonEliminar" href="/staff/update/{{user.staff_id}}">Modify</a>
+          </td>
+          <td>
+            <form action="/staff/delete/{{user.staff_id}}" method="post">
+              <input type="hidden" name="_method" value="DELETE" />
+              <button>Delete</button>
+            </form>
+          </td>
+          {% endfor %}
+          
+        </tbody>
+      </tr>
+    </table>
+  </div>
+{% endblock %}
+
